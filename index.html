@@ -58,24 +58,146 @@
             background-color: black;
             margin-bottom: 50px;
         }
-        #vini {
+        .vini {
             background-image: url('img/vini.png');
             height: 100px;
             width: 80px;
             background-repeat: no-repeat;
             background-size: cover; 
             background-position: center; 
-}
+            margin-top: 5px;
+        }
+        .valverde {
+            background-image: url('img/valverde.png');
+            height: 100px;
+            width: 80px;
+            background-repeat: no-repeat;
+            background-size: cover; 
+            background-position: center; 
+            margin-top: 5px;
+        }
+        .rudiger {
+            background-image: url('img/rüdiger.jpg');
+            height: 100px;
+            width: 80px;
+            background-repeat: no-repeat;
+            background-size: cover; 
+            background-position: center; 
+            margin-top: 5px;
+        }
+        .mbappe {
+            background-image: url('img/mbappe.jpg');
+            height: 100px;
+            width: 80px;
+            background-repeat: no-repeat;
+            background-size: cover; 
+            background-position: center; 
+            margin-top: 5px;
+        }
+        .kortisz {
+            background-image: url('img/körtisz.webp');
+            height: 100px;
+            width: 80px;
+            background-repeat: no-repeat;
+            background-size: cover; 
+            background-position: center; 
+            margin-top: 5px;
+        }
+        .guller {
+            background-image: url('img/guller.jpg');
+            height: 100px;
+            width: 80px;
+            background-repeat: no-repeat;
+            background-size: cover; 
+            background-position: center; 
+            margin-top: 5px;
+        }
+        .fran {
+            background-image: url('img/fran.jpg');
+            height: 100px;
+            width: 80px;
+            background-repeat: no-repeat;
+            background-size: cover; 
+            background-position: center; 
+            margin-top: 5px;
+        }
+        .ceballos {
+            background-image: url('img/ceballos.jpg');
+            height: 100px;
+            width: 80px;
+            background-repeat: no-repeat;
+            background-size: cover; 
+            background-position: center; 
+            margin-top: 5px;
+        }
+        .camavinga {
+            background-image: url('img/camavinga.png');
+            height: 100px;
+            width: 80px;
+            background-repeat: no-repeat;
+            background-size: cover; 
+            background-position: center; 
+            margin-top: 5px;
+        }
+        .bellingham {
+            background-image: url('img/bellingham.jpg');
+            height: 100px;
+            width: 80px;
+            background-repeat: no-repeat;
+            background-size: cover; 
+            background-position: center; 
+            margin-top: 5px;
+        }
+        .asencio {
+            background-image: url('img/asencio.jpg');
+            height: 100px;
+            width: 80px;
+            background-repeat: no-repeat;
+            background-size: cover; 
+            background-position: center; 
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
-    <div class="csatar" id="csatar"></div><div class="csatar1"></div> <div class="csatar2"></div>
-    <div class="kozep" id="kozep"></div><div class="kozep1"></div> <div class="kozep2"></div>
-    <div class="vedo" id="vedo"></div><div class="vedo1"></div><div class="vedo2"></div> <div class="vedo3"></div>
+    <div class="csatar" id="bele"></div><div class="csatar1" id="bele"></div> <div class="csatar2" id="bele"></div>
+    <div class="kozep" id="bele"></div><div class="kozep1" id="bele"></div> <div class="kozep2" id="bele"></div>
+    <div class="vedo" id="bele"></div><div class="vedo1" id="bele"></div><div class="vedo2" id="bele"></div> <div class="vedo3" id="bele"></div>
     <div class="kapus" id="kapus"></div>
-    <div class="mozgas" draggable="true" id="vini"></div>
+    <div class="vini" draggable="true" id="mozgas"></div>
+    <div class="valverde" draggable="true" id="mozgas"></div>
+    <div class="rudiger" draggable="true" id="mozgas"></div>
+    <div class="mbappe" draggable="true" id="mozgas"></div>
+    <div class="kortisz" draggable="true" id="mozgas"></div>
+    <div class="guller" draggable="true" id="mozgas"></div>
+    <div class="fran" draggable="true" id="mozgas"></div>
+    <div class="ceballos" draggable="true" id="mozgas"></div>
+    <div class="camavinga" draggable="true" id="mozgas"></div>
+    <div class="bellingham" draggable="true" id="mozgas"></div>
+    <div class="asencio" draggable="true" id="mozgas"></div>
     <script>
+        let mozgas=document.getElementById("mozgas");
+        let bele=document.getElementById("bele");
 
+        mozgas.addEventListener('dragstart', (event)=>{
+            event.dataTransfer.setData('text/plain', event.target.id);
+        });
+        bele.addEventListener('dragover', (event)=>{
+            event.preventDefault();
+            zona.style.backgroundColor='yellow';
+
+        });
+        bele.addEventListener('dragleave', ()=>{
+            zona.style.backgroundColor="black";
+
+        });
+        bele.addEventListener("drop", (event)=>{
+            event.preventDefault();
+            const id=event.dataTransfer.getData('text/plain');
+            const draggedElement=document.getElementById(id);
+            
+            bele.appendChild(draggedElement);
+        })
     </script>
 </body>
 </html>
