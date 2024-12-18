@@ -3,9 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Drag and Drop</title>
+    <style>
+        body {
+            background-image: url('img/focapalya.webp');
+            background-repeat: no-repeat;
+            background-position-x: center;
+            background-size: 680px;
+            background-color: rgb(97, 147, 8);
+        }
+        .dropzone {
+            position: absolute;
+            width: 80px;
+            height: 100px;
+            background-color: gray;
+            margin-bottom: 50px;
+        }
+        .csatar { top: 200px; left: 919px; }
+        .csatar1 { top: 300px; left: 1100px; }
+        .csatar2 { top: 300px; left: 730px; }
+        .kozep { top: 550px; left: 919px; background-color: gray; }
+        .kozep1 { top: 500px; left: 800px; }
+        .kozep2 { top: 500px; left: 1050px; }
+        .vedo { top: 650px; left: 800px; }
+        .vedo1 { top: 570px; left: 1170px; }
+        .vedo2 { top: 650px; left: 1050px; }
+        .vedo3 { top: 570px; left: 670px; }
+        .kapus { top: 790px; left: 919px; }
+
+        .player {
+            height: 100px;
+            width: 80px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            margin-top: 5px;
+            cursor: grab;
+        }
+        .vini { background-image: url('img/vini.png'); }
+        .valverde { background-image: url('img/valverde.png'); }
+        .rudiger { background-image: url('img/rüdiger.jpg'); }
+        .mbappe { background-image: url('img/mbappe.jpg'); }
+        .kortisz { background-image: url('img/körtisz.webp'); }
+        .guller { background-image: url('img/guller.jpg'); }
+        .fran { background-image: url('img/fran.jpg'); }
+        .ceballos { background-image: url('img/ceballos.jpg'); }
+        .camavinga { background-image: url('img/camavinga.png'); }
+        .bellingham { background-image: url('img/bellingham.jpg'); }
+        .asencio { background-image: url('img/asencio.jpg'); }
+    </style>
 </head>
 <body>
-    
+
+    <div class="dropzone csatar"></div>
+    <div class="dropzone csatar1"></div>
+    <div class="dropzone csatar2"></div>
+    <div class="dropzone kozep"></div>
+    <div class="dropzone kozep1"></div>
+    <div class="dropzone kozep2"></div>
+    <div class="dropzone vedo"></div>
+    <div class="dropzone vedo1"></div>
+    <div class="dropzone vedo2"></div>
+    <div class="dropzone vedo3"></div>
+    <div class="dropzone kapus"></div>
+
+    <div class="player vini" draggable="true" id="player1"></div>
+    <div class="player valverde" draggable="true" id="player2"></div>
+    <div class="player rudiger" draggable="true" id="player3"></div>
+    <div class="player mbappe" draggable="true" id="player4"></div>
+    <div class="player kortisz" draggable="true" id="player5"></div>
+    <div class="player guller" draggable="true" id="player6"></div>
+    <div class="player fran" draggable="true" id="player7"></div>
+    <div class="player ceballos" draggable="true" id="player8"></div>
+    <div class="player camavinga" draggable="true" id="player9"></div>
+    <div class="player bellingham" draggable="true" id="player10"></div>
+    <div class="player asencio" draggable="true" id="player11"></div>
+
+    <script>
+
+        const players = document.querySelectorAll('.player');
+        const dropzones = document.querySelectorAll('.dropzone');
+
+        players.forEach(player => {
+            player.addEventListener('dragstart', event => {
+                event.dataTransfer.setData('text/plain', event.target.id);
+            });
+        });
+
+        dropzones.forEach(zone => {
+            zone.addEventListener('dragover', event => {
+                event.preventDefault();
+                zone.style.backgroundColor = 'yellow';
+            });
+
+            zone.addEventListener('dragleave', () => {
+                zone.style.backgroundColor = 'gray';
+            });
+
+            zone.addEventListener('drop', event => {
+                event.preventDefault();
+                const playerId = event.dataTransfer.getData('text/plain');
+                const draggedPlayer = document.getElementById(playerId);
+                if (draggedPlayer) {
+                    zone.appendChild(draggedPlayer);
+                }
+                zone.style.backgroundColor = 'gray';
+            });
+        });
+    </script>
+
 </body>
 </html>
