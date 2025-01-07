@@ -83,34 +83,41 @@
 
         const players = document.querySelectorAll('.player');
         const dropzones = document.querySelectorAll('.dropzone');
-
+    
         players.forEach(player => {
             player.addEventListener('dragstart', event => {
                 event.dataTransfer.setData('text/plain', event.target.id);
             });
         });
-
+    
         dropzones.forEach(zone => {
             zone.addEventListener('dragover', event => {
                 event.preventDefault();
                 zone.style.backgroundColor = 'yellow';
             });
-
+    
             zone.addEventListener('dragleave', () => {
                 zone.style.backgroundColor = 'gray';
             });
-
+    
             zone.addEventListener('drop', event => {
                 event.preventDefault();
                 const playerId = event.dataTransfer.getData('text/plain');
                 const draggedPlayer = document.getElementById(playerId);
-                if (draggedPlayer) {
-                    zone.appendChild(draggedPlayer);
+                
+                if (zone.children.length === 0) {
+                    if (draggedPlayer) {
+                        zone.appendChild(draggedPlayer);
+                    }
+                } else {
+                    alert("Hasznalt");
                 }
                 zone.style.backgroundColor = 'gray';
             });
         });
+    
     </script>
+    
 
 </body>
 </html>
